@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let i = 0
+        let j = 0
+        
+        document.getElementById("output").innerHTML = ''
+         function for1() {
+                j = parseInt(document.getElementById('num1').value)
+                document.getElementById("output").innerHTML = ''
+                i = 0
+                while (i < j) {
+                    document.getElementById("output").innerHTML += 'Hello <br>'
+                    i++
+                 }
+            
+        }
+    </script>
+    <title>15-loop-while.html</title>
+</head>
+<body>
+    
+    Inout Number : <input type="text" name="" id="num1">
+    <br> 
+    <br>
+    <input type="submit" value="Submit" onclick="for1()">
+    <br>
+    <p id="output"></p>
+
+</body>
+</html>
