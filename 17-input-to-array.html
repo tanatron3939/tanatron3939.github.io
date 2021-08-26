@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-input-to-array.html</title>
+
+    <script>
+        let student = []
+
+        function adddata() {
+            document.getElementById('sname').value = ''
+            student.push(document.getElementById('sname').value)
+            document.getElementById('output').innerHTML = student
+        }
+    </script>
+
+</head>
+<body>
+    
+    Input Student Name : <input type="text" name="" id="sname">
+    <br>
+    <br>
+    <input type="submit" value="Submit" onclick="adddata()">
+    <br>
+    <br>
+    <p id="output"></p>
+
+</body>
+</html>
