@@ -83,10 +83,10 @@
 
  
     </style>
-    <title>24-set-local-storage.html</title>
+    <title>25-get-local-storage.html</title>
 </head>
 
-<body>
+<body onload="get_employee()">
     <div class="jumbotron jumbotron-fluid mb-0"
         style="background-image: url(https://wallpapermemory.com/uploads/201/mountain-wallpaper-full-hd-176622.jpg); background-size: cover;">
 
@@ -139,21 +139,8 @@
                     class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">บันทึกข้อมูลพนักงาน</h5>
-                        <p class="card-text"> 
-                            <div class="form-group">
-                                <label for="">รหัสพนักงาน</label>
-                                <input type="text" class="form-control" name="" id="empid" aria-describedby="helpId" placeholder="">
-                                <small id="helpId" class="form-text text-muted"></small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">ชื่อพนักงาน</label>
-                                <input type="text" class="form-control" name="" id="empname" aria-describedby="helpId" placeholder="">
-                                <small id="helpId" class="form-text text-muted"></small>
-                            </div>
-                                <input class="btn btn-success w-25" type="submit" value="Submit" onclick="setdata()">
-                                <input class="btn btn-success w-25" type="reset" value="Reset" onclick="resetdata()">
-                                <input class="btn btn-warning w-28" type="button" value="Delete Storage" onclick="deletStorage()">
+                        <p class="card-text" id="output"> 
+                            
                         </p>
                                 
                 </div>
@@ -183,55 +170,21 @@
 
         <!-- จาวาสคริป -->
     <script>
-        let empid
+        let employee
+        let emp = []
+        let empid 
         let empname
-        let employee = []
-        let local_employee = localStorage.getItem('employee')
+        function get_employee() {
+            employee = localStorage.getItem('employee')
+            emp = eval(employee)
+            // document.getElementById('output').innerHTML = employee + '<br>'
+            // document.getElementById('output').innerHTML += emp
+            // document.getElementById('output').innerHTML = emp[0]['empid'] + ' ' + emp[0]['empname']
 
-        function setdata() {
-            
-            employee = eval(local_employee)
-            empid = document.getElementById('empid').value
-            empname = document.getElementById('empname').value
-            console.log(empid + ' ' + empname)
-
-            // if ไม่ให้ใส่ข้อมูลที่ว่างได้
-            if (empid != '' && empname != '') {
-
-                 // ใช้ if ตรวจสอบข้อมูลที่มีอยู่ หรือ ไม่มีข้อมูล
-                if(employee == null) {
-                    employee = [{"empid" : empid, "empname" : empname}]; 
-                } else {
-                    employee.push({"empid" : empid, "empname" : empname})
-                }
-
-                // เก็บข้อมูลฝั่งเครื่อง ในรูปแบบของ JSON
-                localStorage.setItem('employee', JSON.stringify(employee)) 
-                local_employee = localStorage.getItem('employee')
-
-                document.getElementById("empid").value = ''
-                document.getElementById("empname").value = ''
-
-                alert('Input Successfully!!')
-
-            } else {
-                alert('Please Input Data!!')
+            for (let i of emp ) {
+                document.getElementById('output').innerHTML += i.empid + ' ' + i.empname + '<br>'
             }
 
-        }
-        
-        function resetdata() {
-            document.getElementById("empid").value = ''
-            document.getElementById("empname").value = ''
-        }
-
-        // ลบ localStorage + confirm
-        function deletStorage() {
-                if (confirm("Are you sure to DeleStorage?")) {
-                    localStorage.removeItem('employee')
-                    employee = []
-                    local_employee = null 
-                } 
         }
 
     </script>
