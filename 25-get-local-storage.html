@@ -80,6 +80,10 @@
             background-color: rgb(235, 235, 235);
             color: #5B785B;
         }
+        .head-table {
+            background-color: #5B785B;
+            color: whitesmoke;
+        }
 
  
     </style>
@@ -94,10 +98,10 @@
             src="https://cdn.videvo.net/videvo_files/video/free/2019-03/large_watermarked/181015_Extra_DanangDrone_004_preview.mp4"
             autoplay loop muted></video>
 
-        <div class="container text-light">
-            <h1 class="display-3">Your Website</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis voluptate consequuntur architecto, repudiandae temporibus, blanditiis maiores quo dolor odio harum non? Est porro sapiente in deserunt fugiat placeat rem nesciunt.</p>
-        </div>
+            <div class="container text-light">
+                <h1 class="display-3">My Website</h1>
+                <p class="lead">Thinnaphut Wattananusit 63309010038</p>
+            </div>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -126,7 +130,10 @@
                     <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="24-set-local-storage.html">หน้าที่ 24</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="25-get-local-storage.html">หน้าที่ 25</a>
                 </li>
             </ul>
         </div>
@@ -139,10 +146,28 @@
                     class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">บันทึกข้อมูลพนักงาน</h5>
-                        <p class="card-text" id="output"> 
-                            
+                        <p class="card-text" > 
                         </p>
-                                
+
+                            <table id="emp_table" class="table table-bordered table-striped">
+                                <thead class="head-table ">
+                                    <tr>
+                                        <th>รหัสพนักงาน</th>
+                                        <th>ชื่อพนักงาน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                        <td scope="row "></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td></td>
+                                    </tr> -->
+                                </tbody>
+                            </table> 
+                            <p id="output"></p>          
                 </div>
             </div>
         </div>
@@ -154,7 +179,7 @@
             <p class="text-center my-0 p-2 text-light"></p>
             <p class="text-md-center my-0 p-2 text-dark"> 
                 <b>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad commodi quos tenetur voluptas excepturi accusantium. Mollitia qui quis minus molestias velit sapiente cum odio sint voluptate, nostrum fugit nesciunt voluptates.
+                    Website Created by Thinnaphut Wattananusit
                 </b>
             </p>
             
@@ -172,18 +197,33 @@
     <script>
         let employee
         let emp = []
-        let empid 
-        let empname
+        let emp_tb
+        let cell1
+        let cell2
+        let row
+
         function get_employee() {
             employee = localStorage.getItem('employee')
             emp = eval(employee)
-            // document.getElementById('output').innerHTML = employee + '<br>'
-            // document.getElementById('output').innerHTML += emp
-            // document.getElementById('output').innerHTML = emp[0]['empid'] + ' ' + emp[0]['empname']
+            emp_tb = document.getElementById('emp_table').getElementsByTagName('tbody')[0]
+            
+            if (emp != null) {
+                    
+                    for (let i of emp ) {
+                        row = emp_tb.insertRow()
+                        cell1 = row.insertCell()
+                        cell2 = row.insertCell()
 
-            for (let i of emp ) {
-                document.getElementById('output').innerHTML += i.empid + ' ' + i.empname + '<br>'
+                        cell1.innerHTML = i.empid
+                        cell2.innerHTML = i.empname
+                        // document.getElementById('output').innerHTML += i.empid + ' ' + i.empname + '<br>'
+                    }
+            
+            } else { 
+                document.getElementById('output').innerHTML = 'ไม่พบข้อมูล!'
             }
+
+            
 
         }
 
